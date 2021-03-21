@@ -69,7 +69,7 @@ def ffmpegFinalConcat(currentVidID, vid, aud, copiedFilesFolder, vidNum):
 	out = ffmpeg.output(in1, in2, f'{copiedFilesFolder}\\output_{currentVidID}_{vidNum}.mkv')
 	try:
 		out.run()
-		return f'{copiedFilesFolder}\\output_{currentVidID}_{vidNum}.mkv'
+		return f'output_{currentVidID}_{vidNum}.mkv'
 	except Exception as e:
 		print('!!!!!!!!!!!!!!!!!!!!!!!!!')
 		print(f'ffmpeg conversion for vid {vidNum} of video with ID: {currentVidID} failed')
@@ -97,7 +97,7 @@ col_layout = [[sg.Frame('Input DB File and Videocache Folder', DBFrameLayout, ba
 layout = [[sg.Menu(menu_def, key='-MENUBAR-')],
 			[sg.Column(col_layout, element_justification='c',background_color='#2a363b'), sg.Frame('Output Console',
 			[[sg.Output(size=(50,25), key='-OUT-', background_color='#334147', text_color='#fefbd8')]], background_color='#2a363b')],
-			[sg.Text('FB Messenger VideoCache Parser Ver. 1.0.0', background_color='#2a363b', text_color='#b2c2bf')]]
+			[sg.Text('FB Messenger VideoCache Parser Ver. 1.0.1', background_color='#2a363b', text_color='#b2c2bf')]]
 
 window = sg.Window('FB Messenger VideoCache Parser', layout, background_color='#2a363b') 
 
@@ -114,7 +114,7 @@ while True:
 		except:
 			sg.PopupOK('Visit https://github.com/D-Kats/FB_MESSENGER_VIDEOCACHE_PARSER/blob/main/README.md for documentation', title='Documentation', background_color='#2a363b')
 	if event == 'About':
-		sg.PopupOK('FB Messenger VideoCache Parser Ver. 1.0.0 \n\n --DKats 2021', title='-About-', background_color='#2a363b')
+		sg.PopupOK('FB Messenger VideoCache Parser Ver. 1.0.1 \n\n --DKats 2021', title='-About-', background_color='#2a363b')
 	
 #---buttons events
 	if event == "Parse":
@@ -209,19 +209,19 @@ while True:
 										if currentVideo1 != 'not found':
 											html_vidName = ffmpegFinalConcat(currentVidID, currentVideo1, currentAudio, copiedFilesFolder, 1)
 											if html_vidName != 'video conversion failed':
-												html_code +=f' <a href="{html_vidName}">video </a>'
+												html_code +=f' <a href=".\\files\\{html_vidName}">video </a>'
 											else:
 												html_code += 'video conversion failed '
 										if currentVideo2 != 'not found':
 											html_vidName = ffmpegFinalConcat(currentVidID, currentVideo2, currentAudio, copiedFilesFolder, 2)
 											if html_vidName != 'video conversion failed':
-												html_code +=f' <a href="{html_vidName}">video </a>'
+												html_code +=f' <a href=".\\files\\{html_vidName}">video </a>'
 											else:
 												html_code += 'video conversion failed '
 										if currentVideo3 != 'not found':
 											html_vidName = ffmpegFinalConcat(currentVidID, currentVideo3, currentAudio, copiedFilesFolder, 3)
 											if html_vidName != 'video conversion failed':
-												html_code +=f' <a href="{html_vidName}">video </a>'
+												html_code +=f' <a href=".\\files\\{html_vidName}">video </a>'
 											else:
 												html_code += 'video conversion failed '
 										html_code += '</td>'
